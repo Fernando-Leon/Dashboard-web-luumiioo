@@ -31,50 +31,45 @@ export default function HomePage() {
     {
       icon: Users,
       title: "Gestión de Usuarios",
-      description: "Administra perfiles, visualiza información detallada y gestiona cuentas de usuarios",
+      description: "Administra perfiles, visualiza información detallada y gestiona cuentas de usuarios de la aplicación móvil",
       color: "text-blue-600",
       bgColor: "bg-blue-500/10",
       link: "/users"
     },
     {
       icon: BarChart3,
-      title: "Estadísticas Avanzadas",
-      description: "Analiza métricas demográficas, tests MBTI completados y tendencias de uso",
+      title: "Estadísticas y Análisis",
+      description: "Analiza métricas demográficas, tests MBTI completados, planes activos y tendencias de uso en tiempo real",
       color: "text-purple-600",
       bgColor: "bg-purple-500/10",
       link: "/statistics"
     },
     {
-      icon: Brain,
-      title: "Tests de Personalidad",
-      description: "Monitorea la distribución de tipos MBTI y resultados de evaluaciones",
-      color: "text-pink-600",
-      bgColor: "bg-pink-500/10",
-      link: "/statistics"
-    },
-    {
-      icon: Target,
-      title: "Planes de IA",
-      description: "Supervisa planes generados, progreso y tasas de completación",
-      color: "text-green-600",
-      bgColor: "bg-green-500/10",
-      link: "/statistics"
-    },
-    {
       icon: Settings,
-      title: "Configuración",
-      description: "Registra nuevos usuarios y administra configuraciones del sistema",
+      title: "Registro de Usuarios",
+      description: "Crea nuevas cuentas de usuario y configura permisos de acceso al sistema administrativo",
       color: "text-orange-600",
       bgColor: "bg-orange-500/10",
       link: "/register"
+    }
+  ];
+
+  const aboutFeatures = [
+    {
+      icon: Brain,
+      title: "Tests de Personalidad MBTI",
+      description: "Descubre cómo funcionan las evaluaciones psicométricas basadas en el modelo Myers-Briggs",
+      color: "text-pink-600",
+      bgColor: "bg-pink-500/10",
+      link: "/about/mbti"
     },
     {
-      icon: Shield,
-      title: "Seguridad",
-      description: "Revisa políticas de privacidad, términos y protocolos de seguridad",
-      color: "text-red-600",
-      bgColor: "bg-red-500/10",
-      link: "/security"
+      icon: Target,
+      title: "Planes Personalizados con IA",
+      description: "Conoce el sistema de generación automática de planes de desarrollo personal mediante inteligencia artificial",
+      color: "text-green-600",
+      bgColor: "bg-green-500/10",
+      link: "/about/ai-plans"
     }
   ];
 
@@ -240,7 +235,7 @@ export default function HomePage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {adminFeatures.map((feature, index) => {
                   const Icon = feature.icon;
                   return (
@@ -270,46 +265,109 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          {/* Architecture Info */}
-          <Card className="border-0 shadow-sm bg-muted/30">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Database className="h-5 w-5 text-primary" />
-                Arquitectura de Microservicios
-              </CardTitle>
-              <CardDescription>
-                Este dashboard se conecta a múltiples microservicios especializados
+          {/* About Section */}
+          <Card className="border-2 shadow-lg bg-gradient-to-br from-background to-muted/20">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl">Acerca de la Aplicación</CardTitle>
+              <CardDescription className="text-base">
+                Conoce las funcionalidades principales de Luumiioo para usuarios móviles
               </CardDescription>
             </CardHeader>
             <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {aboutFeatures.map((feature, index) => {
+                  const Icon = feature.icon;
+                  return (
+                    <Link
+                      key={index}
+                      href={feature.link}
+                      className="group relative p-8 rounded-lg border-2 bg-card hover:shadow-lg transition-all duration-200 hover:-translate-y-1 hover:border-primary/50"
+                    >
+                      <div className="flex flex-col space-y-4">
+                        <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl ${feature.bgColor} group-hover:scale-110 transition-transform`}>
+                          <Icon className={`h-8 w-8 ${feature.color}`} />
+                        </div>
+                        <div className="space-y-2">
+                          <h3 className="font-bold text-xl group-hover:text-primary transition-colors">
+                            {feature.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {feature.description}
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-primary font-medium">
+                          Conocer más
+                          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-all" />
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Architecture Info */}
+          <Card className="border-2 shadow-lg">
+            <CardHeader className="text-center">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Database className="h-6 w-6 text-primary" />
+                <CardTitle className="text-2xl">Arquitectura de Microservicios</CardTitle>
+              </div>
+              <CardDescription className="text-base">
+                Este dashboard se conecta a una arquitectura distribuida de servicios especializados para máxima escalabilidad y rendimiento
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="bg-background p-4 rounded-lg border">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                    <p className="font-medium text-sm">ms-auth</p>
+                <div className="bg-gradient-to-br from-blue-500/10 to-blue-500/5 p-5 rounded-lg border-2 border-blue-500/20 hover:border-blue-500/40 transition-all">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
+                    <p className="font-bold text-base">ms-auth</p>
                   </div>
-                  <p className="text-xs text-muted-foreground">Autenticación y autorización</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Autenticación y autorización mediante JWT. Gestiona tokens de acceso y permisos.
+                  </p>
                 </div>
-                <div className="bg-background p-4 rounded-lg border">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                    <p className="font-medium text-sm">ms-app</p>
+                <div className="bg-gradient-to-br from-green-500/10 to-green-500/5 p-5 rounded-lg border-2 border-green-500/20 hover:border-green-500/40 transition-all">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                    <p className="font-bold text-base">ms-app</p>
                   </div>
-                  <p className="text-xs text-muted-foreground">Gestión de usuarios y perfiles</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Gestión de usuarios, perfiles, países y datos demográficos de la aplicación.
+                  </p>
                 </div>
-                <div className="bg-background p-4 rounded-lg border">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-purple-500"></div>
-                    <p className="font-medium text-sm">ms-mbti-test</p>
+                <div className="bg-gradient-to-br from-purple-500/10 to-purple-500/5 p-5 rounded-lg border-2 border-purple-500/20 hover:border-purple-500/40 transition-all">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-3 h-3 rounded-full bg-purple-500 animate-pulse"></div>
+                    <p className="font-bold text-base">ms-mbti-test</p>
                   </div>
-                  <p className="text-xs text-muted-foreground">Tests de personalidad MBTI</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Tests de personalidad MBTI, preguntas, sesiones y resultados psicométricos.
+                  </p>
                 </div>
-                <div className="bg-background p-4 rounded-lg border">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-orange-500"></div>
-                    <p className="font-medium text-sm">ms-ia</p>
+                <div className="bg-gradient-to-br from-orange-500/10 to-orange-500/5 p-5 rounded-lg border-2 border-orange-500/20 hover:border-orange-500/40 transition-all">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-3 h-3 rounded-full bg-orange-500 animate-pulse"></div>
+                    <p className="font-bold text-base">ms-ia</p>
                   </div>
-                  <p className="text-xs text-muted-foreground">Planes generados por IA</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Generación de planes personalizados con IA basados en metas y personalidad.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-muted/30 rounded-lg p-6 border">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-foreground mb-1">Comunicación Segura</p>
+                    <p className="text-sm text-muted-foreground">
+                      Todos los microservicios se comunican mediante APIs REST con autenticación JWT y cifrado HTTPS/TLS.
+                      Cada servicio opera de forma independiente con su propia base de datos.
+                    </p>
+                  </div>
                 </div>
               </div>
             </CardContent>

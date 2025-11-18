@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { AuthContext } from "@/app/layoutClient/layoutClient";
 import { Button } from "@/components/ui/button";
-import { LogOut, Users, UserPlus, Sparkles, BarChart3 } from "lucide-react";
+import { LogOut, Users, UserPlus, Sparkles, BarChart3, Home } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -53,6 +53,13 @@ export default function Navbar() {
             </Button>
           ) : (
             <>
+              <Button asChild variant="ghost" size="sm">
+                <Link href="/" className="flex items-center gap-2">
+                  <Home className="h-4 w-4" />
+                  <span className="hidden sm:inline">Dashboard</span>
+                </Link>
+              </Button>
+              
               <Button asChild variant="ghost" size="sm">
                 <Link href="/users" className="flex items-center gap-2">
                   <Users className="h-4 w-4" />
