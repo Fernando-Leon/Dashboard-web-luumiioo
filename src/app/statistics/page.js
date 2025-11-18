@@ -293,10 +293,6 @@ export default function StatisticsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{plans.length}</div>
-            <p className="text-xs text-muted-foreground mt-1">
-              {users.length > 0 ? ((plans.length / users.length) * 100).toFixed(1) : 0}%
-              de usuarios tienen planes activos
-            </p>
             <p className="text-xs text-muted-foreground mt-2">
               Total de planes de mejora personal generados por la IA basados en el perfil
               MBTI de cada usuario.
